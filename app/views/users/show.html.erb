@@ -4,13 +4,4 @@
   <%= link_to "プロフィール編集", edit_user_path(@user.id) %>
 <% end %>
 
-<% @post_images.each do |post_image| %>
-  <%= link_to post_image_path(post_image.id) do %>
-    <%= image_tag post_image.get_image %>
-  <% end %>
-  <%= image_tag post_image.user.get_profile_image(40, 40) %>
-  <%= link_to post_image.shop_name, post_image_path(post_image.id) %>
-  説明: <%= post_image.caption %>
-  By <%= post_image.user.name %>
-  <%= link_to "#{post_image.post_comments.count} コメント", post_image_path(post_image.id) %>
-<% end %>
+<%= render "post_images/list", post_images: @post_images %>
