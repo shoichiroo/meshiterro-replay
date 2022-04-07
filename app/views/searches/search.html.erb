@@ -1,0 +1,18 @@
+<% if @model == "user" %>
+  <h2>Users search for "<%= @content %>"</h2>
+  <% @records.each do |record| %>
+    <%= link_to user_path(record.id) do %>
+      <%= image_tag record.get_profile_image(40, 40) %>
+      <%= record.name %>
+    <% end %>
+  <% end %>
+<% elsif @model == "post_image" %>
+  <h2>Post search for "<%= @content %>"</h2>
+  <% @records.each do |record| %>
+    <%= link_to post_image_path(record.id) do %>
+      <%= image_tag record.get_image %>
+      <%= record.shop_name %>
+    <% end %>
+    <%= record.caption %>
+  <% end %>
+<% end %>

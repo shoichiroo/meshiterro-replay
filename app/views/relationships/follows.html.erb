@@ -1,0 +1,11 @@
+<% if @users.exists? %>
+  <% @users.each do |user| %>
+    <%= image_tag user.get_profile_image(40, 40) %>
+    <%= user.name %>
+    フォロー数: <%= user.followings.count %>
+    フォロワー数: <%= user.followers.count %>
+    <%= link_to "Show", user_path(user.id) %>
+  <% end %>
+<% else %>
+  <p>フォロー中のユーザーはいません</p>
+<% end %>

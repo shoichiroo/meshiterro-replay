@@ -17,4 +17,16 @@ class PostImage < ApplicationRecord
     end
     image
   end
+
+  def self.search_for(content, method)
+    if method == "perfect"
+      PostImage.where(shop_name: content)
+    elsif method == "forword"
+      PostImage.where("shop_name LIKE ?", content + "%")
+    elsif method == "backword"
+      PostImage.where("shop_name LIKE ?", "%" + content)
+    elsif method == "partial"
+      PostImage.where("shop_name LIKE ?", "%" + content + "%")
+    end
+  end
 end
